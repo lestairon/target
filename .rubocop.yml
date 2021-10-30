@@ -1,0 +1,5 @@
+inherit_from: ./config/default_edge.yml
+
+inherit_gem:
+  rubocop-rootstrap:
+    - config/rails.yml
