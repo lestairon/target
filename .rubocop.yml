@@ -2,4 +2,10 @@ inherit_from: ./config/default_edge.yml
 
 inherit_gem:
   rubocop-rootstrap:
-    - config/rails.yml
+    - config/rails_edge.yml
+
+AllCops:
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - vendor/bundle/**/*
