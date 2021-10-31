@@ -63,6 +63,7 @@ GEM
     ast (2.4.2)
     bootsnap (1.9.1)
       msgpack (~> 1.0)
+    brakeman (5.1.2)
     builder (3.2.4)
     coderay (1.1.3)
     concurrent-ruby (1.1.9)
@@ -74,6 +75,7 @@ GEM
       activesupport (>= 5.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    kwalify (0.7.2)
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -136,6 +138,10 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    reek (6.0.6)
+      kwalify (~> 0.7.0)
+      parser (~> 3.0.0)
+      rainbow (>= 2.0, < 4.0)
     regexp_parser (2.1.1)
     rexml (3.2.5)
     rspec-core (3.10.1)
@@ -173,7 +179,10 @@ GEM
     rubocop-rootstrap (1.2)
       rubocop (>= 0.72, < 2)
     ruby-progressbar (1.11.0)
-    spring (3.0.0)
+    spring (2.1.1)
+    spring-watcher-listen (2.0.1)
+      listen (>= 2.7, < 4.0)
+      spring (>= 1.2, < 3.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -195,15 +204,18 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
+  brakeman (~> 5.1)
   listen (~> 3.3)
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)
   rails (~> 6.1.4, >= 6.1.4.1)
+  reek (~> 6.0.6)
   rspec-rails (~> 4.1)
   rubocop-rails (~> 2.12)
   rubocop-rootstrap (~> 1.2)
-  spring
+  spring (= 2.1.1)
+  spring-watcher-listen (~> 2.0.1)
   tzinfo-data
 
 RUBY VERSION

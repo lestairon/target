@@ -31,12 +31,14 @@ group :development, :test do
 end
 
 group :development do
+  gem 'brakeman', '~> 5.1'
   gem 'listen', '~> 3.3'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'reek', '~> 6.0.6'
   gem 'rubocop-rails', '~> 2.12', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
+  gem 'spring', '2.1.1'
+  gem 'spring-watcher-listen', '~> 2.0.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
