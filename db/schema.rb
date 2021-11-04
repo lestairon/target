@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2021_11_26_135622) do
     t.decimal "latitude", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_targets_on_deleted_at"
     t.index ["topic_id"], name: "index_targets_on_topic_id"
     t.index ["user_id"], name: "index_targets_on_user_id"
   end
