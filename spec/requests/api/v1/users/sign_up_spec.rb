@@ -5,8 +5,11 @@ RSpec.describe 'User acount creation', type: :request do
 
   context 'when attributes are good' do
     let(:user_email) { Faker::Internet.email }
+    let(:password) { Faker::Internet.password }
+    let(:confirm_success_url) { Faker::Internet.url }
+    let(:mails) { ActionMailer::Base.deliveries }
     let(:user_params) do
-      { email: user_email, password: Faker::Internet.password }
+      { email: user_email, password: password, password_confirmation: password }
     end
 
     it 'returns created' do
@@ -17,6 +20,16 @@ RSpec.describe 'User acount creation', type: :request do
 
     it 'creates the user' do
       expect { subject }.to change { User.count }.by(1)
+    end
+
+    it 'sends an email for confirmation' do
+      expect { subject }.to change { mails.size }.by(1)
+    end
+
+    it 'sends the email to the email provided' do
+      subject
+
+      expect(mails.first.to.first).to eq(user_email)
     end
   end
 
