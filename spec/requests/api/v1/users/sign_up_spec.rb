@@ -10,7 +10,7 @@ RSpec.describe 'User acount creation', type: :request do
     end
 
     it 'creates an user account' do
-      expect(response.status).to eq(200)
+      expect(response).to have_http_status(:success)
       expect(User.count).to be(1)
       expect(User.find_by(email: user_email)).to_not be_nil
     end
@@ -22,7 +22,7 @@ RSpec.describe 'User acount creation', type: :request do
     end
 
     it 'raises an error when tryin to create the account' do
-      expect(response.status).to eq(400)
+      expect(response).to have_http_status(:bad_request)
       expect(response.body).to eq({ text: 'Failed to create account' }.to_json)
     end
   end
