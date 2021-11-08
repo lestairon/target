@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe 'User acount creation', type: :request do
-  before { post '/api/v1/users', params: user_params, as: :json }
+  before { post api_v1_user_registration_path, params: user_params, as: :json }
 
   context 'when attributes are good' do
     let(:user_email) { Faker::Internet.email }
     let(:user_params) do
-      { user: { email: user_email, password: Faker::Internet.password } }
+      { email: user_email, password: Faker::Internet.password }
     end
 
     it 'creates an user account' do
-      expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(:created)
       expect(User.count).to be(1)
       expect(User.find_by(email: user_email)).to_not be_nil
     end
@@ -21,9 +21,8 @@ RSpec.describe 'User acount creation', type: :request do
       { user: { mail: 'test@test.com', psswd: 'asd' } }
     end
 
-    it 'raises an error when tryin to create the account' do
-      expect(response).to have_http_status(:bad_request)
-      expect(response.body).to eq({ text: 'Failed to create account' }.to_json)
+    it 'raises an error when trying to create the account' do
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 end

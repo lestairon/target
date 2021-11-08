@@ -1,17 +1,13 @@
 module Api
   module V1
     module Users
-      class RegistrationsController < Devise::RegistrationsController
+      class RegistrationsController < DeviseTokenAuth::RegistrationsController
         respond_to :json
 
-        private
+        protected
 
-        def respond_with(resource, _opts = {})
-          if resource.persisted?
-            render json: resource
-          else
-            render json: { text: 'Failed to create account' }, status: :bad_request
-          end
+        def render_create_success
+          render json: resource_data, status: :created
         end
       end
     end
