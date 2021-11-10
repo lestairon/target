@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2021_11_08_195539) do
     t.json "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email", "provider"], name: "index_users_on_email_and_provider", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
