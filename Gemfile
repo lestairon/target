@@ -33,7 +33,6 @@ end
 group :development do
   gem 'annotate', '~> 3.0', '>= 3.0.3'
   gem 'brakeman', '~> 5.1'
-  # gem 'i18n-tasks', '~> 0.9.34'
   gem 'listen', '~> 3.3'
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 6.0.6'
