@@ -1,10 +1,14 @@
 module Api
   module V1
     module Users
-      class SessionsController < Devise::SessionsController
+      class SessionsController < DeviseTokenAuth::SessionsController
         respond_to :json
 
-        private
+        protected
+
+        def render_create_success
+          render json: { message: 'Logged in successfully.' }, status: :created
+        end
 
         def respond_to_on_destroy
           head :ok
