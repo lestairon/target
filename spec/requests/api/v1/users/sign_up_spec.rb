@@ -21,6 +21,7 @@ RSpec.describe 'User acount creation', type: :request do
   end
 
   context 'when attributes are not correct' do
+    before { subject }
     let(:user_params) do
       { user: { mail: 'test@test.com', psswd: 'asd' } }
     end
