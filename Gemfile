@@ -31,13 +31,20 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate', '~> 3.0', '>= 3.0.3'
   gem 'brakeman', '~> 5.1'
   gem 'listen', '~> 3.3'
+  gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 6.0.6'
   gem 'rubocop-rails', '~> 2.12', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
+  gem 'rubocop-rspec', '2.5.0'
   gem 'spring', '2.1.1'
   gem 'spring-watcher-listen', '~> 2.0.1'
+end
+
+group :test do
+  gem 'simplecov', '~> 0.13.0', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
