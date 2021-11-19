@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'User login', type: :request do
   subject { post api_v1_user_session_path, params: user_params, as: :json }
+
   before { subject }
 
   context 'when user credentials are correct' do
