@@ -1,10 +1,10 @@
 module Api
   module V1
     module Users
-      class SessionsController < DeviseTokenAuth::SessionsController
+      class SessionsController < Devise::SessionsController
         respond_to :json
 
-        protected
+        private
 
         def respond_to_on_destroy
           head :ok
