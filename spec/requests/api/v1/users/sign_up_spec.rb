@@ -9,20 +9,25 @@ RSpec.describe 'User acount creation', type: :request do
       { email: user_email, password: Faker::Internet.password }
     end
 
-    it 'creates an user account' do
-      expect { subject }.to change { User.count }.by(1)
+    it 'returns created' do
+      subject
+
       expect(response).to have_http_status(:created)
-      expect(User.find_by(email: user_email)).to_not be_nil
+    end
+
+    it 'creates the user' do
+      expect { subject }.to change { User.count }.by(1)
     end
   end
 
   context 'when attributes are not correct' do
-    before { subject }
     let(:user_params) do
       { user: { mail: 'test@test.com', psswd: 'asd' } }
     end
 
-    it 'raises an error when trying to create the account' do
+    before { subject }
+
+    it 'returns unprocessable entity' do
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
