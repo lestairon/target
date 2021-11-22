@@ -23,9 +23,13 @@ gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'devise', '~> 4.8.0'
+gem 'devise_token_auth', '1.2.0'
+gem 'rack-cors', '1.1.1'
 
 group :development, :test do
+  gem 'factory_bot_rails', '6.2.0'
+  gem 'faker', '~> 2.19.0'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 4.1'
 end
@@ -44,6 +48,7 @@ group :development do
 end
 
 group :test do
+  gem 'shoulda-matchers', '~> 5.0'
   gem 'simplecov', '~> 0.13.0', require: false
 end
 
