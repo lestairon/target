@@ -9,6 +9,10 @@ module Api
         render status: :created
       end
 
+      def index
+        @targets = current_api_v1_user.targets
+      end
+
       private
 
       def target_params
