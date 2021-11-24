@@ -4,15 +4,9 @@ module Api
       before_action :authenticate_api_v1_user!
 
       def create
-        target = Target.new(target_params)
-        target.user = current_api_v1_user
+        target = current_api_v1_user.targets.create!(target_params)
 
-        if target.save
-          render json: target, status: :created
-        else
-          render json: { status: :error, message: target.errors.full_messages.to_sentence },
-                 status: :unprocessable_entity
-        end
+        render json: target, status: :created
       end
 
       private
