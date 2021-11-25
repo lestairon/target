@@ -4,9 +4,9 @@ module Api
       before_action :authenticate_api_v1_user!
 
       def create
-        target = current_api_v1_user.targets.create!(target_params)
+        @target = current_api_v1_user.targets.create!(target_params)
 
-        render json: target, status: :created
+        render status: :created
       end
 
       private
