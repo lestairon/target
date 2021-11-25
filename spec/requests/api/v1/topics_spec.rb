@@ -35,7 +35,7 @@ RSpec.describe 'Topics', type: :request do
       before { subject }
 
       it 'returns an empty array' do
-        expect(parsed_response).to eq([])
+        expect(parsed_response).to be_empty
       end
     end
   end
