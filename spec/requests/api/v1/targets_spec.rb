@@ -144,6 +144,12 @@ RSpec.describe 'Target', type: :request do
       it 'returns the target radius' do
         expect(parsed_response).to all(have_key('radius'))
       end
+
+      it 'returns all the targets' do
+        targets_ids = parsed_response.map { |target| target['id'] }
+
+        expect(targets_ids).to match_array(targets.map(&:id))
+      end
     end
 
     context 'when user does not have targets' do
@@ -151,6 +157,16 @@ RSpec.describe 'Target', type: :request do
 
       it 'returns an empty array' do
         expect(parsed_response.size).to be_zero
+      end
+    end
+
+    context 'when user is not signed in' do
+      let(:headers) { {} }
+
+      before { subject }
+
+      it 'returns unauthorized' do
+        expect(response).to have_http_status(:unauthorized)
       end
     end
   end
