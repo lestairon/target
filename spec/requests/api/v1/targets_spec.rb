@@ -156,7 +156,7 @@ RSpec.describe 'Target', type: :request do
       before { subject }
 
       it 'returns an empty array' do
-        expect(parsed_response.size).to be_zero
+        expect(parsed_response).to be_empty
       end
     end
 
