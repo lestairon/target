@@ -1,11 +1,11 @@
 class User < ApplicationRecord
-  has_many :requests, dependent: :destroy
-  devise :registerable, :database_authenticatable, :confirmable
+  devise :registerable, :database_authenticatable, :confirmable, :recoverable
   include DeviseTokenAuth::Concerns::User
-
+  
   MAX_ALLOWED_TARGETS = 10
-
+  
   has_many :targets, dependent: :destroy
+  has_many :requests, dependent: :destroy
   enum gender: { male: 0, female: 1 }
   validates :email, presence: true, uniqueness: { scope: :provider }
 

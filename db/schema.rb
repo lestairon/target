@@ -91,6 +91,8 @@ ActiveRecord::Schema.define(version: 2021_12_03_072849) do
     t.string "unconfirmed_email"
     t.integer "targets_count"
     t.integer "gender"
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
     t.index ["email", "provider"], name: "index_users_on_email_and_provider", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
