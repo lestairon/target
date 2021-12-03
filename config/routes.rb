@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       }
 
       resources :topics, only: :index
+      resources :targets, only: :create
     end
   end
 end
