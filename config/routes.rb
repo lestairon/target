@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
       resources :topics, only: :index
       resources :targets, only: %i[create index destroy]
+      resources :requests, only: :create
     end
   end
 end

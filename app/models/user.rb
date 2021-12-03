@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :requests, dependent: :destroy
   devise :registerable, :database_authenticatable, :confirmable
   include DeviseTokenAuth::Concerns::User
 
