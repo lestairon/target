@@ -103,4 +103,71 @@ RSpec.describe 'Target', type: :request do
       end
     end
   end
+
+  describe 'display list of targets' do
+    let(:user) { create(:user) }
+    let(:headers) { user.create_new_auth_token }
+    let(:parsed_response) { JSON.parse(response.body) }
+
+    subject { get api_v1_targets_path, as: :json, headers: headers }
+
+    context 'when user has targets' do
+      let(:num_of_targets) { Faker::Number.between(from: 1, to: 10) }
+      let!(:targets) { create_list(:target, num_of_targets, user: user) }
+
+      before { subject }
+
+      it 'returns status code ok' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'returns all the user targets' do
+        expect(parsed_response.size).to eq(num_of_targets)
+      end
+
+      it 'returns the targets id' do
+        expect(parsed_response).to all(have_key('id'))
+      end
+
+      it 'returns the targets title' do
+        expect(parsed_response).to all(have_key('title'))
+      end
+
+      it 'returns the target longitude' do
+        expect(parsed_response).to all(have_key('longitude'))
+      end
+
+      it 'returns the target latitude' do
+        expect(parsed_response).to all(have_key('latitude'))
+      end
+
+      it 'returns the target radius' do
+        expect(parsed_response).to all(have_key('radius'))
+      end
+
+      it 'returns all the targets' do
+        targets_ids = parsed_response.map { |target| target['id'] }
+
+        expect(targets_ids).to match_array(targets.map(&:id))
+      end
+    end
+
+    context 'when user does not have targets' do
+      before { subject }
+
+      it 'returns an empty array' do
+        expect(parsed_response).to be_empty
+      end
+    end
+
+    context 'when user is not signed in' do
+      let(:headers) { {} }
+
+      before { subject }
+
+      it 'returns unauthorized' do
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+  end
 end
