@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2021_11_26_135622) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.integer "targets_count"
+    t.integer "gender"
     t.index ["email", "provider"], name: "index_users_on_email_and_provider", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
