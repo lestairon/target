@@ -16,7 +16,7 @@ RSpec.describe 'Password reset', type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'sends an email with password reset instructions' do
+    it 'sends an email' do
       expect { subject }.to change { mails.size }.by(1)
     end
 
