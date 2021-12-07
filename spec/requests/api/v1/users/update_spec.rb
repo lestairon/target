@@ -4,6 +4,7 @@ RSpec.describe 'User account update', type: :request do
   let(:user) { create(:user) }
   let(:headers) { user.create_new_auth_token }
   let(:user_params) { {} }
+
   subject do
     patch api_v1_user_registration_path, as: :json, params: user_params, headers: headers
   end
@@ -62,7 +63,7 @@ RSpec.describe 'User account update', type: :request do
     it 'returns unauthorized' do
       subject
 
-      expect(response).to have_http_status(:not_found)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it 'does not change the user' do
