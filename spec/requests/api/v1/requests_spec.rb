@@ -10,7 +10,7 @@ RSpec.describe 'Requests', type: :request do
     subject { post api_v1_requests_path, as: :json, headers: headers, params: request_params }
 
     context 'when a user is logged in' do
-      let(:request_params) { { text: Faker::Lorem.paragraph } }
+      let(:request_params) { { message: Faker::Lorem.paragraph } }
 
       it 'returns created' do
         subject

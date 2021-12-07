@@ -12,7 +12,7 @@ module Api
       private
 
       def request_params
-        params.require(:request).permit(:text)
+        params.require(:request).permit(:message)
       end
     end
   end

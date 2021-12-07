@@ -1,1 +1,1 @@
-json.extract! @request, :id, :text, :status
+json.extract! @request, :id, :message, :status
