@@ -9,3 +9,7 @@ AllCops:
     - bin/*
     - db/schema.rb
     - vendor/bundle/**/*
+
+Lint/MissingSuper:
+  Exclude:
+    - app/services/*

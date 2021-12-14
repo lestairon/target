@@ -27,6 +27,8 @@ gem 'devise', '~> 4.8.0'
 gem 'devise_token_auth', '1.2.0'
 gem 'rack-cors', '1.1.1'
 
+gem 'geocoder', '~> 1.7.0'
+
 group :development, :test do
   gem 'factory_bot_rails', '6.2.0'
   gem 'faker', '~> 2.19.0'
