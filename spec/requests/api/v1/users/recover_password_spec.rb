@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Password reset', type: :request do
   let(:user) { create(:user) }
   let(:mails) { ActionMailer::Base.deliveries }
