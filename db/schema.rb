@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2021_12_03_072849) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "message", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
   create_table "targets", force: :cascade do |t|
     t.bigint "topic_id", null: false
     t.bigint "user_id", null: false
@@ -56,15 +65,6 @@ ActiveRecord::Schema.define(version: 2021_12_03_072849) do
     t.index ["deleted_at"], name: "index_targets_on_deleted_at"
     t.index ["topic_id"], name: "index_targets_on_topic_id"
     t.index ["user_id"], name: "index_targets_on_user_id"
-  end
-
-  create_table "requests", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.text "message", null: false
-    t.integer "status", default: 0, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2021_12_03_072849) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "requests", "users"
   add_foreign_key "targets", "topics"
   add_foreign_key "targets", "users"
-  add_foreign_key "requests", "users"
 end
