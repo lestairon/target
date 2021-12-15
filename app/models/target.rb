@@ -9,6 +9,7 @@ class Target < ApplicationRecord
   validates :radius, numericality: { only_integer: true }
   validate :number_of_user_targets
   after_validation :reverse_geocode
+  delegate :name, to: :topic, prefix: true
 
   private
 

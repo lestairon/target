@@ -6,6 +6,8 @@ module Api
       def create
         @target = current_api_v1_user.targets.create!(target_params)
 
+        NotificateNearbyTargetsService.call(@target)
+
         render status: :created
       end
 
