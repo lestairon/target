@@ -1,6 +1,6 @@
 class AddConfirmableFieldsToUser < ActiveRecord::Migration[6.1]
   def change
-    change_table :users do |t|
+    change_table :users, bulk: true do |t|
       ## Confirmable
       t.string   :confirmation_token
       t.datetime :confirmed_at
