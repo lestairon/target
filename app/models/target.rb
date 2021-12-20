@@ -1,4 +1,6 @@
 class Target < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :topic
   belongs_to :user, counter_cache: true
 

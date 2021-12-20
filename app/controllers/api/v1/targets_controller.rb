@@ -13,6 +13,12 @@ module Api
         @targets = current_api_v1_user.targets
       end
 
+      def destroy
+        current_api_v1_user.targets.find(params[:id]).destroy!
+
+        head :ok
+      end
+
       private
 
       def target_params

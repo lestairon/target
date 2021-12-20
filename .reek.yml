@@ -123,6 +123,9 @@ detectors:
     enabled: false
   UtilityFunction:
     enabled: false
+  FeatureEnvy:
+    exclude:
+      - ApplicationController#render_record_not_found
 
 exclude_paths:
   - config
